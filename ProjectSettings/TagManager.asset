@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 895643935
+    locked: 0
+  - name: Scene
+    uniqueID: 2779638041
+    locked: 0
+  - name: Destructable
+    uniqueID: 1408427427
+    locked: 0
+  - name: Walls
+    uniqueID: 300362341
+    locked: 0

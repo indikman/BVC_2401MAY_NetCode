@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerController : NetworkBehaviour
+public class LocalPC : MonoBehaviour
 {
     [SerializeField] private float moveSpeed=10f;
     private Vector2 _moveVector;
@@ -29,7 +29,6 @@ public class PlayerController : NetworkBehaviour
 
     private void MovePlayer()
     {
-        if(!IsOwner) return;
         _rb.velocity = moveSpeed * Time.fixedDeltaTime * new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
     }
