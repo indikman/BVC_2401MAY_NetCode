@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
-public class SimpleChat : MonoBehaviour
+public class SimpleChat : NetworkBehaviour
 {
     [SerializeField] private TMP_InputField txtName;
     [SerializeField] private TMP_InputField txtMessage;
@@ -19,7 +20,20 @@ public class SimpleChat : MonoBehaviour
 
     public void SendMessage()
     {
-        txtChatView.text += $"\n<b>{_userName} :</b> {txtMessage.text}";
+        string message = $"<b>{_userName} :</b> {txtMessage.text}\n";
+        DisplayMessageRpc(message);
+    }
+
+    private void DisplayMessage(string message)
+    {
+        txtChatView.text += message;
         txtMessage.text = "";
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void DisplayMessageRpc(string message, RpcParams rpcParams=default)
+    {
+        DisplayMessage(message);
+        DisplayMessage($"<i>clientID {rpcParams.Receive.SenderClientId}</i>");
     }
 }

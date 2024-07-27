@@ -5,15 +5,24 @@ using UnityEngine;
 
 public class Bomb : NetworkBehaviour
 {
-    // Start is called before the first frame update
+    public ulong clientID;
+    
+    // after 2 secods delay, despawn the bomb.
+    
     void Start()
     {
-        
+        StartCoroutine(DestroyAfter(2));
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator DestroyAfter(float time)
     {
-        
+        yield return new WaitForSeconds(time);
+        DestroyBomb();
     }
+
+    private void DestroyBomb()
+    {
+        this.NetworkObject.Despawn();
+    }
+    
 }

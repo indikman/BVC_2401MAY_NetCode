@@ -716,7 +716,7 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 8978104253253544279, guid: 65ad0f2e711db4663b028ce3ad3a63f5, type: 3}
     Prefabs:
       NetworkPrefabsLists:
-      - {fileID: 11400000, guid: aaf1092a0ee494732869b27374444cb1, type: 2}
+      - {fileID: 11400000, guid: 4bdcad2f1ee2f4512961ea47bcd24864, type: 2}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -762,6 +762,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d79572e0430f41dd81e1264850acc08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onStartHost:
+    m_PersistentCalls:
+      m_Calls: []
+  onStartClient:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &554664599
 Rigidbody2D:
   serializedVersion: 4
