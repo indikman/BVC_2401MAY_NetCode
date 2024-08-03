@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class Bomb : NetworkBehaviour
 {
-    public ulong clientID;
+    public ulong clientID
+    {
+        get;
+        private set;
+    }
     
     // after 2 secods delay, despawn the bomb.
     
@@ -24,5 +28,18 @@ public class Bomb : NetworkBehaviour
     {
         this.NetworkObject.Despawn();
     }
+
+    // This will only be executed in the server side
+    public void UpdateClientID(ulong clientID)
+    {
+        this.clientID = clientID;
+        UpdateClientIDClientRpc(clientID);
+    }
     
+    // This will be executed in the client side
+    [Rpc(SendTo.NotServer)]
+    private void UpdateClientIDClientRpc(ulong clientID)
+    {
+        this.clientID = clientID;
+    }
 }

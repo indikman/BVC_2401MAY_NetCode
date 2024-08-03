@@ -35,11 +35,13 @@ public class BombSpawner : NetworkBehaviour
         PlaceBomb(RpcParams.Receive.SenderClientId);
     }
 
+    // only gets executed from the server side, all the time
     private void PlaceBomb(ulong clientID)
     {
         // place a bomb over the network
         NetworkObject spawnedBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
         spawnedBomb.Spawn();
-        spawnedBomb.GetComponent<Bomb>().clientID = clientID;
+        spawnedBomb.GetComponent<Bomb>().UpdateClientID(clientID);
     }
+
 }
